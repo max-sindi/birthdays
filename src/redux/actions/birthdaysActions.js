@@ -4,7 +4,10 @@ export function getTodayList() {
   return dispatch => {
     return BirthdaysApi.getTodayList()
       .then(res => {
-        return dispatch({type: 'LIST_GET_SUCCESS', res, sortDirection: -1});
+        return dispatch({type: 'LIST_GET_SUCCESS', res});
+      })
+      .catch( rej => {
+        return dispatch({type: 'LIST_GET_FAIL', rej});
       })
   }
 }
@@ -15,6 +18,9 @@ export function getRecentList() {
       .then(res => {
         return dispatch({type: 'LIST_GET_SUCCESS', res, sortDirection: +1})
       })
+      .catch( rej => {
+        return dispatch({type: 'LIST_GET_FAIL', rej});
+      })
   }
 }
 
@@ -22,7 +28,10 @@ export function getSoonList() {
   return dispatch => {
     return BirthdaysApi.getSoonList()
       .then(res => {
-        return dispatch({type: 'LIST_GET_SUCCESS', res, sortDirection: -1})
+        return dispatch({type: 'LIST_GET_SUCCESS', res})
+      })
+      .catch( rej => {
+        return dispatch({type: 'LIST_GET_FAIL', rej});
       })
   }
 }
@@ -38,3 +47,12 @@ export function watchMore() {
     dispatch({type: 'WATCH_MORE'});
   }
 }
+
+const functionsList = {
+    getTodayList,
+    getRecentList,
+    getSoonList,
+    clearList,
+  }
+
+export default functionsList;

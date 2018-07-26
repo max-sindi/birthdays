@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Person from '../partials/Person';
-import Loader from '../partials/Loader';
-import WatchMore from './WatchMore';
+import Person from './Person';
+import Loader from './Loader';
+import WatchMore from '../components/WatchMore';
 
 class PeopleList extends Component {
 

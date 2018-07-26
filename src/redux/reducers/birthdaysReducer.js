@@ -12,7 +12,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'LIST_GET_SUCCESS': {
-      const { sortDirection } = action;
+      // sort direction used to define in which direction dates must be sorted
+      // '-1' means from sooner to more later, and '1' - vice mersa
+      const { sortDirection=-1 } = action;
       const { skipCurrent, usersLimit } = state;
 
       const users = action.res.data.users.map(user => {
@@ -82,6 +84,11 @@ export default (state = initialState, action) => {
         usersList: users,
         skipCurrent: state.usersLimit,
       };
+    }
+
+    case 'LIST_GET_FAIL': {
+      console.warn('failed to get list');
+      return state;
     }
 
     case 'LIST_CLEAR': {
